@@ -48,6 +48,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
       
       if (response.status.code === 'VALID') {
         startNewGame();
+        await refreshBalance();
       } else {
         alert(`Error: ${response.status.error_message || 'Failed to place bet'}`);
       }
