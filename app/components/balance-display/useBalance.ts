@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchBalance, BalanceResponse } from '../../api/api';
+import { fetchBalance} from '../../api/api';
 
 interface UseBalanceProps {
   customerId: string;
