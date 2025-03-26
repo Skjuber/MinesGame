@@ -110,7 +110,7 @@ const MinesGame: React.FC = () => {
             <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
             {canCashout && (
               <button onClick={handleCashout}>
-                Cash Out
+                Cash Out 
               </button>
             )}
           </div>
@@ -140,7 +140,7 @@ const MinesGame: React.FC = () => {
             </div>
             
             <button onClick={handlePlaceBet}>
-              Place Bet
+              Place Bet ANTE
             </button>
           </div>
         )}
