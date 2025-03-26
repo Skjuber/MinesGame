@@ -3,7 +3,7 @@ import { useBalanceHook } from './hooks/useBalanceHook';
 
 const BalanceDisplaySimple: React.FC = () => {
  
-  const customerId = '12345'; 
+  const customerId = '92dcf3b1-d73e-4acc-a15e-51f21c156da9'; 
   const { balance, currency, isLoading, error } = useBalanceHook(customerId);
 
   
