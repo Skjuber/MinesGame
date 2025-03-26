@@ -140,7 +140,7 @@ const MinesGame: React.FC = () => {
             </div>
             
             <button onClick={handlePlaceBet}>
-              Place Bet
+              Place Bet Ante
             </button>
           </div>
         )}
