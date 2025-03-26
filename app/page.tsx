@@ -1,5 +1,5 @@
 "use client"
-//Test
+
 import React, { useState, useEffect } from 'react';
 import { BalanceProvider } from './components/balance-display/context/BalanceContext';
 import BalanceDisplay from './components/balance-display/BalanceDisplay';
