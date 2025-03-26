@@ -44,7 +44,7 @@ export const BalanceProvider: React.FC<BalanceProviderProps> = ({ children, cust
     }
   }, [customerId]);
 
-  // Initial fetch
+
   useEffect(() => {
     fetchUserBalance();
   }, [fetchUserBalance]);
