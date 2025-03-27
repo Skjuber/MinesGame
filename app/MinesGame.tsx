@@ -66,7 +66,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
       const response = await processCashout(customerId, winnings);
       
       if (response.status.code === 'VALID') {
-        alert(`Successfully cashed out ${(winnings / 100).toFixed(2)} EUR!`);
+        alert(`Successfully cashed out ${(winnings / 100).toFixed(2)} €!`);
         endGame();
         await refreshBalance();
       } else {
@@ -99,7 +99,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   return (
     <div className="mines-game">
       <div className="game-header">
-        <button className="back-button">←</button>
+        <button className="back-button"> <img src="/arrow-vector.png" alt="arrow-image" /></button>
         <BalanceDisplay />
       </div>
       
