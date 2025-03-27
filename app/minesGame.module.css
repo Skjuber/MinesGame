@@ -1,0 +1,75 @@
+.minesGame {
+    color: white;
+  }
+  
+  .gameHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .backButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .gameStats {
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .cashoutButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .cashoutButton:hover {
+    background-color: #45a049;
+  }
+  
+  .betControls {
+    margin-top: 20px;
+  }
+  
+  .betAmount {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    color: white;
+  }
+  
+  .betAmount label {
+    margin-bottom: 5px;
+  }
+  
+  .betAmount input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #2a2a2a;
+    color: white;
+  }
+  
+  .betButton {
+    background-color: #00bfff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .betButton:hover {
+    background-color: #0099cc;
+  }

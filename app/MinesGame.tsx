@@ -6,6 +6,7 @@ import BalanceDisplay from './components/balance-display/BalanceDisplay';
 import Board from './components/tile/board';
 import { TileContent } from './components/tile/tile';
 import { placeBet, processCashout } from './api/api';
+import styles from './minesGame.module.css';
 
 interface MinesGameProps {
   customerId: string;
@@ -14,7 +15,6 @@ interface MinesGameProps {
 const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const { refreshBalance } = useBalance();
   
-
   const [gameActive, setGameActive] = useState(false);
   const [resetBoard, setResetBoard] = useState(false);
   const [betAmount, setBetAmount] = useState(1000); 
@@ -22,7 +22,6 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const [multiplier, setMultiplier] = useState(1);
   const [canCashout, setCanCashout] = useState(false);
 
- 
   useEffect(() => {
     if (openedTiles > 0) {
       setMultiplier(1 + (0.2 * openedTiles));
@@ -97,18 +96,20 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   };
 
   return (
-    <div className="mines-game">
-      <div className="game-header">
-        <button className="back-button"> <img src="/arrow-vector.png" alt="arrow-image" /></button>
+    <div className={styles.minesGame}>
+      <div className={styles.gameHeader}>
+        <button className={styles.backButton}>
+          <img src="/arrow-vector.png" alt="arrow-image" />
+        </button>
         <BalanceDisplay />
       </div>
       
       {gameActive && (
-        <div className="game-stats">
+        <div className={styles.gameStats}>
           <p>Multiplier: {multiplier.toFixed(2)}x</p>
           <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
           {canCashout && (
-            <button className="cashout-button" onClick={handleCashout}>
+            <button className={styles.cashoutButton} onClick={handleCashout}>
               Cash Out
             </button>
           )}
@@ -123,8 +124,8 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
       />
       
       {!gameActive && (
-        <div className="bet-controls">
-          <div className="bet-amount">
+        <div className={styles.betControls}>
+          <div className={styles.betAmount}>
             <label htmlFor="betAmount">Bet Amount (EUR)</label>
             <input
               type="number"
@@ -135,7 +136,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
               step="0.01"
             />
           </div>
-          <button className="bet-button" onClick={handlePlaceBet}>
+          <button className={styles.betButton} onClick={handlePlaceBet}>
             Place Bet
           </button>
         </div>
