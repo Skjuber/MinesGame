@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Tile, { TileContent } from './tile';
+import styles from './board.module.css';
 
 interface BoardProps {
   onTileReveal: (content: TileContent) => void;
@@ -57,12 +58,11 @@ const Board: React.FC<BoardProps> = ({
     updatedTiles[position] = { ...updatedTiles[position], revealed: true };
     setTiles(updatedTiles);
     
-   
     onTileReveal(tileContent);
   };
 
   return (
-    <div>
+    <div className={styles.board}>
       {tiles.map((tile, index) => (
         <Tile
           key={index}

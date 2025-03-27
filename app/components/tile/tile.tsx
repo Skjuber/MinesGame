@@ -26,10 +26,10 @@ const Tile: React.FC<TileProps> = ({
   };
 
   return (
-    <button
+<button
       onClick={handleClick}
       disabled={revealed || disabled}
-      className="relative w-12 h-12 flex items-center justify-center bg-gray-200 border border-gray-400 hover:bg-gray-300 transition-colors"
+      className="relative w-12 h-12 flex items-center justify-center bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-colors rounded-lg m-0.5"
     >
       {revealed ? (
         content === 'gem' ? (
@@ -49,15 +49,7 @@ const Tile: React.FC<TileProps> = ({
             style={{ maxWidth: '100%', height: 'auto' }}
           />
         )
-      ) : (
-        <img 
-          src="/tile.png" 
-          alt="Hidden Tile" 
-          width={30} 
-          height={30}
-          style={{ maxWidth: '100%', height: 'auto' }}
-        />
-      )}
+      ) : null}
     </button>
   );
 };
