@@ -38,7 +38,7 @@ const Tile: React.FC<TileProps> = ({
             alt="Diamond" 
             width={30} 
             height={30}
-            style={{ maxWidth: '100%', height: 'auto' }}
+            style={{ maxWidth: '100%', height: 'auto', width: '100%' }}
           />
         ) : (
           <img 
@@ -46,7 +46,7 @@ const Tile: React.FC<TileProps> = ({
             alt="Bomb" 
             width={30} 
             height={30}
-            style={{ maxWidth: '100%', height: 'auto' }}
+            style={{ maxWidth: '100%', height: 'auto', width: '100%' }}
           />
         )
       ) : null}
