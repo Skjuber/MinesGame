@@ -84,3 +84,44 @@
   .betButton:hover {
     background-color: #0099cc;
   }
+
+  
+.boardWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.winOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  border-radius: 8px;
+}
+
+.winMessage {
+  background-color: rgba(0, 128, 0, 0.8);
+  border-radius: 8px;
+  padding: 20px 40px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  border: 2px solid rgb(0, 255, 0);
+}
+
+.multiplierText {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.winAmountText {
+  font-size: 1.5rem;
+  color: white;
+}

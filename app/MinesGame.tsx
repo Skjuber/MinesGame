@@ -22,8 +22,10 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const [openedTiles, setOpenedTiles] = useState(0);
   const [multiplier, setMultiplier] = useState(1);
   const [canCashout, setCanCashout] = useState(false);
+  const [showWinMessage, setShowWinMessage] = useState(false);
+  const [winAmount, setWinAmount] = useState(0);
+  const [winMultiplier, setWinMultiplier] = useState(1);
 
- 
   useEffect(() => {
     if (openedTiles > 0) {
       setMultiplier(1 + (0.2 * openedTiles));
@@ -67,8 +69,17 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
       const response = await processCashout(customerId, winnings);
       
       if (response.status.code === 'VALID') {
-        alert(`Successfully cashed out ${(winnings / 100).toFixed(2)} €!`);
-        endGame();
+        
+        setWinAmount(winnings);
+        setWinMultiplier(multiplier);
+        setShowWinMessage(true);
+        
+      
+        setTimeout(() => {
+          setShowWinMessage(false);
+          endGame();
+        }, 3000);
+        
         await refreshBalance();
       } else {
         alert(`Error: ${response.status.error_message || 'Failed to cash out'}`);
@@ -83,6 +94,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
     setOpenedTiles(0);
     setGameActive(true);
     setResetBoard(prev => !prev);
+    setShowWinMessage(false);
   };
 
   const endGame = () => {
@@ -105,44 +117,55 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
         </button>
         <BalanceDisplay />
       </div>
-      <div className= {styles.container}>
-      {gameActive && (
-        <div className={styles.gameStats}>
-          <p>Multiplier: {multiplier.toFixed(2)}x</p>
-          <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
-          {canCashout && (
-            <button className={styles.cashoutButton} onClick={handleCashout}>
-              Cash Out
-            </button>
+      <div className={styles.container}>
+        {gameActive && (
+          <div className={styles.gameStats}>
+            <p>Multiplier: {multiplier.toFixed(2)}x</p>
+            <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
+            {canCashout && (
+              <button className={styles.cashoutButton} onClick={handleCashout}>
+                Cash Out
+              </button>
+            )}
+          </div>
+        )}
+        
+        <div className={styles.boardWrapper}>
+          <Board
+            onTileReveal={handleTileReveal}
+            gameActive={gameActive}
+            resetGame={resetBoard}
+            bombCount={3}
+          />
+          
+          {showWinMessage && (
+            <div className={styles.winOverlay}>
+              <div className={styles.winMessage}>
+                <div className={styles.multiplierText}>{winMultiplier.toFixed(2)}x</div>
+                <div className={styles.winAmountText}>{(winAmount / 100).toFixed(2)} EUR</div>
+              </div>
+            </div>
           )}
         </div>
-      )}
-      
-      <Board
-        onTileReveal={handleTileReveal}
-        gameActive={gameActive}
-        resetGame={resetBoard}
-        bombCount={3}
-      />
-      
-      {!gameActive && (
-        <div className={styles.betControls}>
-          <div className={styles.betAmount}>
-            <label htmlFor="betAmount">Bet Amount (EUR)</label>
-            <input
-              type="number"
-              id="betAmount"
-              value={(betAmount / 100).toFixed(2)}
-              onChange={handleBetChange}
-              min="1"
-              step="0.01"
-            />
+        
+        {!gameActive && (
+          <div className={styles.betControls}>
+            <div className={styles.betAmount}>
+              <label htmlFor="betAmount">Bet Amount (EUR)</label>
+              <input
+                type="number"
+                id="betAmount"
+                value={(betAmount / 100).toFixed(2)}
+                onChange={handleBetChange}
+                min="1"
+                step="0.01"
+              />
+            </div>
+            <button className={styles.betButton} onClick={handlePlaceBet}>
+              Place Bet
+            </button>
           </div>
-          <button className={styles.betButton} onClick={handlePlaceBet}>
-            Place Bet
-          </button>
-        </div>
-      )}
+        )}
       </div>
     </div>
   );
