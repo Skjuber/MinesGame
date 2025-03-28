@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useBalance } from './components/balance-display/context/BalanceContext';
 import BalanceDisplay from './components/balance-display/BalanceDisplay';
-import Board from './components/tile/board';
+import Board, { BoardRef } from './components/tile/board';
 import { TileContent } from './components/tile/tile';
 import { placeBet, processCashout } from './api/api';
 import styles from './minesGame.module.css';
@@ -14,8 +14,8 @@ interface MinesGameProps {
 
 const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const { refreshBalance } = useBalance();
+  const boardRef = useRef<BoardRef>(null);
   
-
   const [gameActive, setGameActive] = useState(false);
   const [resetBoard, setResetBoard] = useState(false);
   const [betAmount, setBetAmount] = useState(1000); 
@@ -65,16 +65,19 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
     if (!canCashout) return;
     
     try {
+
+      if (boardRef.current) {
+        boardRef.current.revealAllTiles();
+      }
+      
       const winnings = Math.floor(betAmount * multiplier);
       const response = await processCashout(customerId, winnings);
       
       if (response.status.code === 'VALID') {
-        
         setWinAmount(winnings);
         setWinMultiplier(multiplier);
         setShowWinMessage(true);
         
-      
         setTimeout(() => {
           setShowWinMessage(false);
           endGame();
@@ -132,6 +135,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
         
         <div className={styles.boardWrapper}>
           <Board
+            ref={boardRef}
             onTileReveal={handleTileReveal}
             gameActive={gameActive}
             resetGame={resetBoard}

@@ -1,6 +1,7 @@
+
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import Tile, { TileContent } from './tile';
 import styles from './board.module.css';
 
@@ -11,14 +12,29 @@ interface BoardProps {
   bombCount: number;
 }
 
-const Board: React.FC<BoardProps> = ({ 
+
+export interface BoardRef {
+  revealAllTiles: () => void;
+}
+
+const Board = forwardRef<BoardRef, BoardProps>(({ 
   onTileReveal, 
   gameActive, 
   resetGame, 
   bombCount = 3 
-}) => {
+}, ref) => {
   const [tiles, setTiles] = useState<Array<{ content: TileContent; revealed: boolean }>>([]);
 
+
+  useImperativeHandle(ref, () => ({
+    revealAllTiles: () => {
+      const updatedTiles = tiles.map(tile => ({
+        ...tile,
+        revealed: true
+      }));
+      setTiles(updatedTiles);
+    }
+  }));
 
   useEffect(() => {
     initializeBoard();
@@ -75,6 +91,8 @@ const Board: React.FC<BoardProps> = ({
       ))}
     </div>
   );
-};
+});
+
+Board.displayName = 'Board';
 
 export default Board;
