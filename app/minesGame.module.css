@@ -108,10 +108,12 @@
     background-color: #aaff0026;
     border-radius: 8px;
     padding: 12px 20px;
-    width: 180px;
+    width: 141px;
+    height: 96px;
     text-align: center;
     box-shadow: #C21E1C80;
-    border: 2px solid rgb(0, 255, 0);
+    border: 1px solid #AAFF00;
+    border-radius: 10px;
     backdrop-filter: blur(8px);
   }
   
