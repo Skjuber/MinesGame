@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
@@ -23,14 +22,15 @@ const Board = forwardRef<BoardRef, BoardProps>(({
   resetGame, 
   bombCount = 3 
 }, ref) => {
-  const [tiles, setTiles] = useState<Array<{ content: TileContent; revealed: boolean }>>([]);
+  const [tiles, setTiles] = useState<Array<{ content: TileContent; revealed: boolean; manuallyRevealed: boolean }>>([]);
 
 
   useImperativeHandle(ref, () => ({
     revealAllTiles: () => {
       const updatedTiles = tiles.map(tile => ({
         ...tile,
-        revealed: true
+        revealed: true,
+       
       }));
       setTiles(updatedTiles);
     }
@@ -45,7 +45,8 @@ const Board = forwardRef<BoardRef, BoardProps>(({
     const totalTiles = 25;
     const newTiles = Array(totalTiles).fill(null).map(() => ({ 
       content: 'gem' as TileContent, 
-      revealed: false 
+      revealed: false,
+      manuallyRevealed: false
     }));
     
   
@@ -56,7 +57,7 @@ const Board = forwardRef<BoardRef, BoardProps>(({
       
      
       if (newTiles[randomIndex].content !== 'bomb') {
-        newTiles[randomIndex] = { content: 'bomb', revealed: false };
+        newTiles[randomIndex] = { content: 'bomb', revealed: false, manuallyRevealed: false };
         bombsPlaced++;
       }
     }
@@ -71,7 +72,11 @@ const Board = forwardRef<BoardRef, BoardProps>(({
     const updatedTiles = [...tiles];
     const tileContent = updatedTiles[position].content;
    
-    updatedTiles[position] = { ...updatedTiles[position], revealed: true };
+    updatedTiles[position] = { 
+      ...updatedTiles[position], 
+      revealed: true,
+      manuallyRevealed: true 
+    };
     setTiles(updatedTiles);
     
     onTileReveal(tileContent);
@@ -84,6 +89,7 @@ const Board = forwardRef<BoardRef, BoardProps>(({
           key={index}
           content={tile.content}
           revealed={tile.revealed}
+          manuallyRevealed={tile.manuallyRevealed}
           position={index}
           onClick={handleTileClick}
           disabled={!gameActive}
