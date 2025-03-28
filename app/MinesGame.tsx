@@ -40,6 +40,11 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
     if (content === 'gem') {
       setOpenedTiles(prev => prev + 1);
     } else if (content === 'bomb') {
+
+      if (boardRef.current) {
+        boardRef.current.revealAllTiles();
+      }
+      
       endGame();
       alert('Game Over! You hit a bomb.');
     }
