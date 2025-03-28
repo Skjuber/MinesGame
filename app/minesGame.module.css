@@ -17,6 +17,15 @@
     cursor: pointer;
     padding: 5px;
   }
+
+  .container{
+
+    border: 1px solid #373E65;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #12101C;
+   
+  }
   
   .gameStats {
     color: white;

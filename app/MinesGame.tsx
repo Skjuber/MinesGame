@@ -15,6 +15,7 @@ interface MinesGameProps {
 const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const { refreshBalance } = useBalance();
   
+
   const [gameActive, setGameActive] = useState(false);
   const [resetBoard, setResetBoard] = useState(false);
   const [betAmount, setBetAmount] = useState(1000); 
@@ -22,6 +23,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const [multiplier, setMultiplier] = useState(1);
   const [canCashout, setCanCashout] = useState(false);
 
+ 
   useEffect(() => {
     if (openedTiles > 0) {
       setMultiplier(1 + (0.2 * openedTiles));
@@ -103,7 +105,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
         </button>
         <BalanceDisplay />
       </div>
-      
+      <div className= {styles.container}>
       {gameActive && (
         <div className={styles.gameStats}>
           <p>Multiplier: {multiplier.toFixed(2)}x</p>
@@ -141,8 +143,10 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 };
 
 export default MinesGame;
+
