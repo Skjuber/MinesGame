@@ -131,22 +131,6 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
         <BalanceDisplay />
       </div>
       <div className={styles.container}>
-        {gameActive && (
-          <div className={styles.gameStats}>
-            <p>Multiplier: {multiplier.toFixed(2)}x</p>
-            <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
-            {canCashout && (
-              <button 
-                className={styles.cashoutButton} 
-                onClick={handleCashout}
-                disabled={isCashingOut} 
-              >
-                {isCashingOut ? 'Cashing Out...' : 'Cash Out'}
-              </button>
-            )}
-          </div>
-        )}
-        
         <div className={styles.boardWrapper}>
           <Board
             ref={boardRef}
@@ -166,7 +150,23 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
           )}
         </div>
         
-        {!gameActive && (
+        {gameActive ? (
+          <div className={styles.gameStats}>
+            <div className={styles.statsInfo}>
+              <p>Multiplier: {multiplier.toFixed(2)}x</p>
+              <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
+            </div>
+            {canCashout && (
+              <button 
+                className={styles.cashoutButton} 
+                onClick={handleCashout}
+                disabled={isCashingOut} 
+              >
+                {isCashingOut ? 'Cashing Out...' : 'Cash Out'}
+              </button>
+            )}
+          </div>
+        ) : (
           <div className={styles.betControls}>
             <div className={styles.betAmount}>
               <label htmlFor="betAmount">Bet Amount (EUR)</label>
