@@ -25,6 +25,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const [showWinMessage, setShowWinMessage] = useState(false);
   const [winAmount, setWinAmount] = useState(0);
   const [winMultiplier, setWinMultiplier] = useState(1);
+  const [isCashingOut, setIsCashingOut] = useState(false); 
 
   useEffect(() => {
     if (openedTiles > 0) {
@@ -67,9 +68,10 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   };
 
   const handleCashout = async () => {
-    if (!canCashout) return;
+    if (!canCashout || isCashingOut) return;
     
     try {
+      setIsCashingOut(true);
 
       if (boardRef.current) {
         boardRef.current.revealAllTiles();
@@ -91,10 +93,12 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
         await refreshBalance();
       } else {
         alert(`Error: ${response.status.error_message || 'Failed to cash out'}`);
+        setIsCashingOut(false);
       }
     } catch (error) {
       console.error('Error cashing out:', error);
       alert('Failed to cash out. Please try again.');
+      setIsCashingOut(false); 
     }
   };
 
@@ -103,6 +107,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
     setGameActive(true);
     setResetBoard(prev => !prev);
     setShowWinMessage(false);
+    setIsCashingOut(false);
   };
 
   const endGame = () => {
@@ -131,8 +136,12 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
             <p>Multiplier: {multiplier.toFixed(2)}x</p>
             <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
             {canCashout && (
-              <button className={styles.cashoutButton} onClick={handleCashout}>
-                Cash Out
+              <button 
+                className={styles.cashoutButton} 
+                onClick={handleCashout}
+                disabled={isCashingOut} 
+              >
+                {isCashingOut ? 'Cashing Out...' : 'Cash Out'}
               </button>
             )}
           </div>
