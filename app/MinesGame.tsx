@@ -158,9 +158,10 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
             </div>
             {canCashout && (
               <button 
-                className={styles.cashoutButton} 
+                className={styles.betButton} 
                 onClick={handleCashout}
                 disabled={isCashingOut} 
+                style={{ backgroundColor: '#00bfff' }}
               >
                 {isCashingOut ? 'Cashing Out...' : 'Cash Out'}
               </button>
@@ -190,4 +191,3 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
 };
 
 export default MinesGame;
-
