@@ -29,7 +29,7 @@
   
   .gameStats {
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   
   .cashoutButton {
@@ -45,6 +45,26 @@
   
   .cashoutButton:hover {
     background-color: #45a049;
+  }
+
+  .profitSection {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    color: white;
+  }
+  
+  .profitSection label {
+    margin-bottom: 5px;
+  }
+  
+  .profitInput {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #373E65;
+    background-color: #2a2a2a;
+    color: white;
+    margin-top: 5px;
   }
   
   .betControls {
@@ -65,7 +85,7 @@
   .betAmount input {
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #373E65;
     background-color: #2a2a2a;
     color: white;
   }
@@ -84,6 +104,11 @@
   
   .betButton:hover {
     background-color: #0099cc;
+  }
+
+  .betButton:disabled {
+    background-color: #555;
+    cursor: not-allowed;
   }
 
   .boardWrapper {
