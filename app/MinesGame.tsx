@@ -173,7 +173,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
               Place Bet
             </button>
             <div className={styles.betAmount}>
-              <label htmlFor="betAmount">Bet Amount (EUR)</label>
+              <label htmlFor="betAmount">Bet Amount</label>
               <input
                 type="number"
                 id="betAmount"
