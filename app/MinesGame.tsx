@@ -161,6 +161,19 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
                 {isCashingOut ? 'Cashing Out...' : `Cashout ${((betAmount * multiplier) / 100).toFixed(2)} EUR`}
               </button>
             )}
+         
+            <div className={styles.betAmount}>
+              <label htmlFor="betAmount">Bet Amount</label>
+              <input
+                type="number"
+                id="betAmount"
+                value={(betAmount / 100).toFixed(2)}
+                onChange={handleBetChange}
+                min="1"
+                step="0.01"
+                disabled
+              />
+            </div>
             <div className={styles.profitSection}>
               <label htmlFor="totalProfit">Total Profit ({multiplier.toFixed(1)}x)</label>
               <input
