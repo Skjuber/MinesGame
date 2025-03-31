@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -152,10 +153,6 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
         
         {gameActive ? (
           <div className={styles.gameStats}>
-            <div className={styles.statsInfo}>
-              <p>Multiplier: {multiplier.toFixed(2)}x</p>
-              <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
-            </div>
             {canCashout && (
               <button 
                 className={styles.betButton} 
@@ -165,9 +162,16 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
                 {isCashingOut ? 'Cashing Out...' : 'Cash Out'}
               </button>
             )}
+            <div className={styles.statsInfo}>
+              <p>Multiplier: {multiplier.toFixed(2)}x</p>
+              <p>Potential win: {((betAmount * multiplier) / 100).toFixed(2)} EUR</p>
+            </div>
           </div>
         ) : (
           <div className={styles.betControls}>
+            <button className={styles.betButton} onClick={handlePlaceBet}>
+              Place Bet
+            </button>
             <div className={styles.betAmount}>
               <label htmlFor="betAmount">Bet Amount (EUR)</label>
               <input
@@ -179,9 +183,6 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
                 step="0.01"
               />
             </div>
-            <button className={styles.betButton} onClick={handlePlaceBet}>
-              Place Bet
-            </button>
           </div>
         )}
       </div>

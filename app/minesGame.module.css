@@ -48,7 +48,7 @@
   }
   
   .betControls {
-    margin-top: 20px;
+    margin-top: 5px;
   }
   
   .betAmount {
@@ -79,6 +79,7 @@
     cursor: pointer;
     font-weight: bold;
     width: 100%;
+    margin-bottom: 10px;
   }
   
   .betButton:hover {
