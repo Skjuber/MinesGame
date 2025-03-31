@@ -3,7 +3,7 @@
     justify-content: center;
     grid-template-columns: repeat(5, 55px);
     grid-template-rows: repeat(5, 1fr);
-    gap: 1px;
+    /* gap: 1px; */
     max-width: 400px;
     margin: 0 auto;
     padding: 10px;
