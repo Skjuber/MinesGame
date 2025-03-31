@@ -160,8 +160,7 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
               <button 
                 className={styles.betButton} 
                 onClick={handleCashout}
-                disabled={isCashingOut} 
-                style={{ backgroundColor: '#00bfff' }}
+                disabled={isCashingOut}
               >
                 {isCashingOut ? 'Cashing Out...' : 'Cash Out'}
               </button>
