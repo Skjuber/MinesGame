@@ -153,3 +153,32 @@
     font-size: 1.2rem;
     color: white;
   }
+
+  .gameSettings {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .settingField {
+    flex: 1;
+  }
+  
+  .settingField label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #fff;
+  }
+  
+  .settingInput {
+    width: 100%;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #373E65;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+  }

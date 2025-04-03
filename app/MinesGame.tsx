@@ -26,6 +26,8 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
   const [winAmount, setWinAmount] = useState(0);
   const [winMultiplier, setWinMultiplier] = useState(1);
   const [isCashingOut, setIsCashingOut] = useState(false); 
+  const [minesCount] = useState(3);
+  const [gemsCount] = useState(22);
 
   useEffect(() => {
     if (openedTiles > 0) {
@@ -174,6 +176,30 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
                 disabled
               />
             </div>
+            
+            <div className={styles.gameSettings}>
+              <div className={styles.settingField}>
+                <label htmlFor="minesCount">Mines</label>
+                <input
+                  type="text"
+                  id="minesCount"
+                  value={minesCount}
+                  readOnly
+                  className={styles.settingInput}
+                />
+              </div>
+              <div className={styles.settingField}>
+                <label htmlFor="gemsCount">Gems</label>
+                <input
+                  type="text"
+                  id="gemsCount"
+                  value={gemsCount}
+                  readOnly
+                  className={styles.settingInput}
+                />
+              </div>
+            </div>
+            
             <div className={styles.profitSection}>
               <label htmlFor="totalProfit">Total Profit ({multiplier.toFixed(1)}x)</label>
               <input
@@ -200,6 +226,29 @@ const MinesGame: React.FC<MinesGameProps> = ({ customerId }) => {
                 min="1"
                 step="0.01"
               />
+            </div>
+            
+            <div className={styles.gameSettings}>
+              <div className={styles.settingField}>
+                <label htmlFor="minesCount">Mines</label>
+                <input
+                  type="text"
+                  id="minesCount"
+                  value={minesCount}
+                  readOnly
+                  className={styles.settingInput}
+                />
+              </div>
+              <div className={styles.settingField}>
+                <label htmlFor="gemsCount">Gems</label>
+                <input
+                  type="text"
+                  id="gemsCount"
+                  value={gemsCount}
+                  readOnly
+                  className={styles.settingInput}
+                />
+              </div>
             </div>
           </div>
         )}
